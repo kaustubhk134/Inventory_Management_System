@@ -67,7 +67,7 @@ A full-stack inventory management solution with MySQL database and responsive we
 
 | Dark Mode | Mobile View |
 |-----------|-------------|
-| ![Dark](![image](https://github.com/user-attachments/assets/0a0b8ca8-b84b-4835-b239-8f566778a193) | ![Mobile](https://github.com/user-attachments/assets/96df9679-cc91-47c7-900e-fd7696ddcef2)
+| ![Dark](https://github.com/user-attachments/assets/0a0b8ca8-b84b-4835-b239-8f566778a193) | ![Mobile](https://github.com/user-attachments/assets/96df9679-cc91-47c7-900e-fd7696ddcef2)
 
 
 
