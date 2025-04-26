@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <!-- Add this inside the navbar, right before </ul> -->
+    <li class="nav-item dropdown ms-2">
+        <a class="nav-link dropdown-toggle" href="#" id="themeDropdown" role="button" data-bs-toggle="dropdown">
+            <i class="fas fa-moon"></i>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item theme-switcher" data-theme="light" href="#"><i class="fas fa-sun me-2"></i>Light</a></li>
+            <li><a class="dropdown-item theme-switcher" data-theme="dark" href="#"><i class="fas fa-moon me-2"></i>Dark</a></li>
+            <li><a class="dropdown-item theme-switcher" data-theme="auto" href="#"><i class="fas fa-adjust me-2"></i>System</a></li>
+        </ul>
+    </li>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-boxes me-2"></i>GodamPro
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#dashboard"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products"><i class="fas fa-box me-1"></i> Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sales"><i class="fas fa-chart-line me-1"></i> Sales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#customers"><i class="fas fa-users me-1"></i> Customers</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="py-5">
+        <div class="container">
+            <h2 class="mb-4"><i class="fas fa-tachometer-alt me-2"></i>Dashboard Overview</h2>
+            
+            <!-- Summary Cards -->
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card summary-card bg-success text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Products</h5>
+                            <h2 class="card-text">48</h2>
+                            <i class="fas fa-boxes icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card summary-card bg-info text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Low Stock</h5>
+                            <h2 class="card-text">5</h2>
+                            <i class="fas fa-exclamation-triangle icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card summary-card bg-warning text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Revenue</h5>
+                            <h2 class="card-text">₹1,42,540</h2>
+                            <i class="fas fa-rupee-sign icon"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card summary-card bg-danger text-white">
+                        <div class="card-body">
+                            <h5 class="card-title">Pending Payments</h5>
+                            <h2 class="card-text">₹3,240</h2>
+                            <i class="fas fa-clock icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="fas fa-chart-line me-2"></i>Monthly Sales</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="salesChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="fas fa-chart-pie me-2"></i>Inventory by Category</h5>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="categoryChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4"><i class="fas fa-box me-2"></i>Product Management</h2>
+            
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-list me-2"></i>All Products</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    <th>Stock</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>iPhone 13</td>
+                                    <td>Apple</td>
+                                    <td>Electronics</td>
+                                    <td><span class="badge bg-success">10</span></td>
+                                    <td>₹75,000</td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <!-- More product rows would go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header bg-danger text-white">
+                    <h5><i class="fas fa-exclamation-triangle me-2"></i>Low Stock Alert</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Current Stock</th>
+                                    <th>Action Needed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Samsung Galaxy S22</td>
+                                    <td><span class="badge bg-warning">8</span></td>
+                                    <td><button class="btn btn-sm btn-success">Order More</button></td>
+                                </tr>
+                                <!-- More low stock rows would go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sales Section -->
+    <section id="sales" class="py-5">
+        <div class="container">
+            <h2 class="mb-4"><i class="fas fa-chart-line me-2"></i>Sales Analytics</h2>
+            
+            <div class="card mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h5><i class="fas fa-receipt me-2"></i>Recent Transactions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Payment</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Amit</td>
+                                    <td>₹1,25,000</td>
+                                    <td><span class="badge bg-success">Paid</span></td>
+                                    <td>Completed</td>
+                                    <td>24-04-2024</td>
+                                </tr>
+                                <!-- More transaction rows would go here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Customers Section -->
+    <section id="customers" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="mb-4"><i class="fas fa-users me-2"></i>Customer Management</h2>
+            
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h5><i class="fas fa-user-friends me-2"></i>All Customers</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Phone</th>
+                                            <th>Total Spent</th>
+                                            <th>Last Purchase</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Amit</td>
+                                            <td>9999911111</td>
+                                            <td>₹1,25,000</td>
+                                            <td>24-04-2024</td>
+                                        </tr>
+                                        <!-- More customer rows would go here -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
+                            <h5><i class="fas fa-clock me-2"></i>Pending Payments</h5>
+                        </div>
+                        <div class="card-body">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Suman
+                                    <span class="badge bg-warning">₹2,000</span>
+                                </li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    Priya
+                                    <span class="badge bg-warning">₹1,200</span>
+                                </li>
+                                <!-- More pending payment rows would go here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-boxes me-2"></i>GodamPro</h5>
+                    <p class="mb-0">A complete inventory management solution for your business.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">© 2025 GodamPro. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS and Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
